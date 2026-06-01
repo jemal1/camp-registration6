@@ -1,19 +1,87 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<div class="col">
-    <label>Last Name</label>
-    <input id="lastName" type="text" required>
-</div>
-<div class="col">
-    <label>Gender</label>
-    <select id="gender" required>
-        <option value="">Select</option>
-        <option>Male</option>
-        <option>Female</option>
-        <option>Other</option>
-    </select>
-</div>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Summer Camp Registration Form</title>
 </head>
 <body>
-    </html>
+
+<h1>Summer Camp Registration Form</h1>
+
+<form id="campForm">
+
+<p>
+<label>First Name</label><br>
+<input id="firstName" type="text" required>
+</p>
+
+<p>
+<label>Last Name</label><br>
+<input id="lastName" type="text" required>
+</p>
+
+<p>
+<label>Date of Birth</label><br>
+<input id="dob" type="date" required>
+</p>
+
+<p>
+<label>Gender</label><br>
+<select id="gender" required>
+<option value="">Select</option>
+<option>Male</option>
+<option>Female</option>
+<option>Other</option>
+</select>
+</p>
+
+<button type="submit">Register Camper</button>
+
+</form>
+
+<div id="successMessage" style="display:none;color:green;">
+Registration submitted successfully!
+</div>
+
+<script>
+document.getElementById("campForm").addEventListener("submit", async function(e){
+
+e.preventDefault();
+
+const data = {
+firstName: document.getElementById("firstName").value,
+lastName: document.getElementById("lastName").value,
+dob: document.getElementById("dob").value,
+gender: document.getElementById("gender").value
+};
+
+try {
+
+await fetch(
+"https://script.google.com/macros/s/AKfycbxgTbV-QTBeJZvARMBIbVoTl19Sx12B1fRnvJjFHsctLR8VcM-9MpLgboeoYpzySFHd/exec",
+{
+method: "POST",
+headers: {
+"Content-Type": "application/json"
+},
+body: JSON.stringify(data)
+}
+);
+
+document.getElementById("successMessage").style.display = "block";
+this.reset();
+
+} catch(error) {
+alert("Registration failed");
+console.error(error);
+}
+
+});
+</script>
+
+</body>
+</html>
+
+
+    
