@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Summer Camp Registration</title>
+</head>
+<body>
+
+<!-- Your form goes here -->
+
+<form id="campForm">
+  ...
+</form>
+
+<div id="successMessage" style="display:none;">
+  Registration submitted successfully!
+</div>
+
+<script>
+document.getElementById("campForm").addEventListener("submit", async function(e){
+
+    e.preventDefault();
+
+    const data = {
+        firstName: document.querySelectorAll("input")[0].value,
+        lastName: document.querySelectorAll("input")[1].value,
+        dob: document.querySelectorAll("input")[2].value,
+        gender: document.querySelector("select").value
+    };
+
+    try {
+
+        await fetch("https://script.google.com/macros/s/AKfycbxgTbV-QTBeJZvARMBIbVoTl19Sx12B1fRnvJjFHsctLR8VcM-9MpLgboeoYpzySFHd/exec", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(data)
+        });
+
+        document.getElementById("successMessage").style.display = "block";
+        this.reset();
+
+    } catch(error) {
+
+        alert("Registration failed.");
+        console.error(error);
+
+    }
+
+});
+</script>
+
+</body>
+</html>
