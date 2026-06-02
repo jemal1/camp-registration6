@@ -56,6 +56,8 @@ document.getElementById("campForm").addEventListener("submit", async function(e)
   };
 
   try {
+
+    // 🔥 Your real Google Web App URL is inserted here
     const response = await fetch("https://script.google.com/macros/s/AKfycbw1HqomKkeN479DHtf0uxuUxAvhOkk6IGAYScJQk2V2oExA8AmUklp6DI6CV30nIuiP/exec", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
